@@ -2,11 +2,12 @@ package com.example;
 
 import com.sun.corba.se.impl.oa.poa.POAPolicyMediatorImpl_NR_UDS;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil;
+import org.omg.CORBA.Object;
 
 import java.util.Arrays;
 
-public class Array {
-    private int[] data;
+public class Array<E> {
+    private E[] data;
     private int size;
 
     /**
@@ -21,7 +22,7 @@ public class Array {
      * @param capacity
      */
     public Array(int capacity){
-        data = new int[capacity];
+        data = (E[])new Object[capacity];
         size = 0;
     }
 
@@ -53,7 +54,7 @@ public class Array {
      * 在数组末尾添加元素
      * @param e
      */
-    public void addLast(int e){
+    public void addLast(E e){
         add(size, e);
     }
 
@@ -61,7 +62,7 @@ public class Array {
      * 在数组开头添加元素
      * @param e
      */
-    public void addFirst(int e){
+    public void addFirst(E e){
         add(0, e);
     }
 
@@ -70,7 +71,7 @@ public class Array {
      * @param index
      * @param e
      */
-    public void add(int index, int e){
+    public void add(int index, E e){
         if(size == data.length){
             throw new IllegalArgumentException("add error, array is full");
         }
@@ -91,7 +92,7 @@ public class Array {
      * 获取index的元素
      * @return
      */
-    public int get(int index){
+    public E get(int index){
         if(index < 0 || index >= size){
             throw new IllegalArgumentException("add error, array index illegal");
         }
@@ -102,7 +103,7 @@ public class Array {
      * 设置index元素的值
      * @return
      */
-    public void set(int index, int e){
+    public void set(int index, E e){
         if(index < 0 || index >= size){
             throw new IllegalArgumentException("add error, array index illegal");
         }
@@ -113,7 +114,7 @@ public class Array {
      * 数组中是否包含元素e
      * @return
      */
-    public boolean contain(int e){
+    public boolean contain(E e){
         for(int i = 0; i < size; i++){
             if(data[i] == e){
                 return true;
@@ -126,7 +127,7 @@ public class Array {
      * 查找元素在数组中的位置
      * @return
      */
-    public int find(int e){
+    public int find(E e){
         for(int i = 0; i < size; i++){
             if(data[i] == e){
                 return i;
@@ -140,28 +141,29 @@ public class Array {
      * @param index
      * @return
      */
-    public int remove(int index){
+    public E remove(int index){
         if(index < 0 || index >= size){
             throw new IllegalArgumentException("del error, array index illegal");
         }
 
-        int res = data[index];
+        E res = data[index];
         for (int i = index; i < size - 1; i++) {
             data[i] = data[i+1];
         }
         size--;
+        data[size] = null;
         return res;
     }
 
-    public int removeFirst(){
+    public E removeFirst(){
         return remove(0);
     }
 
-    public int removeLast(){
+    public E removeLast(){
         return remove(size - 1);
     }
 
-    public void removeElement(int e){
+    public void removeElement(E e){
         // 数组中可能存在多个，
         int index = find(e);
         if(index != -1){
