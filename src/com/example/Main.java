@@ -1,6 +1,6 @@
 package com.example;
 
-import java.util.ArrayList;
+import com.example.array.Array;
 
 public class Main {
     public static void main(String[] args) {
