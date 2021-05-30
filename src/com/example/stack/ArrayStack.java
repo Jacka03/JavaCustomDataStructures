@@ -1,5 +1,9 @@
 package com.example.stack;
 
+/**
+ * 队列
+ * @param <E>
+ */
 public class ArrayStack<E> implements Stack<E> {
 
     private Array<E> array;
