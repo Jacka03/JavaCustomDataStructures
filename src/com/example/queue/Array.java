@@ -1,6 +1,4 @@
-package com.example.stack;
-
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil;
+package com.example.queue;
 
 public class Array<E> {
     private E[] data;
