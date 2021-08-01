@@ -5,8 +5,9 @@ import com.example.stack.ArrayStack;
 public class test {
     public static void main(String[] args) {
         // ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
-        LoopQueue<Integer> arrayQueue = new LoopQueue<>();
+        // LoopQueue<Integer> arrayQueue = new LoopQueue<>();
 
+        LinkedListQueue<Integer> arrayQueue = new LinkedListQueue<>();
         for (int i = 0; i < 10; i++){
             arrayQueue.enQueue(i);
             System.out.println(arrayQueue);

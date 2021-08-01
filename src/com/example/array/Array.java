@@ -1,13 +1,12 @@
 package com.example.array;
 
-import java.util.Arrays;
-
 public class Array<E> {
     private E[] data;
     private int size;
 
     /**
      * 无数构造函数
+     * 默认数组大小为10
      */
     public Array(){
         this(10);
@@ -15,16 +14,19 @@ public class Array<E> {
 
     /**
      * 有参数构造函数
-     * @param capacity
+     * @param capacity 数组大小
      */
     public Array(int capacity){
+        if(capacity < 0)
+            throw new IllegalArgumentException("error ");
+
         data = (E[])new Object[capacity];
         size = 0;
     }
 
     /**
      * 获取数组中元素个数
-     * @return
+     * @return 数组中元素个数
      */
     public int getSize(){
         return size;
@@ -32,7 +34,7 @@ public class Array<E> {
 
     /**
      * 获取数组的容量
-     * @return
+     * @return 数组的容量
      */
     public int getCapacity(){
         return data.length;
@@ -40,7 +42,7 @@ public class Array<E> {
 
     /**
      * 数组是否为空
-     * @return
+     * @return boolean，数组是否为空
      */
     public boolean isEmpty(){
         return size == 0;
@@ -48,7 +50,7 @@ public class Array<E> {
 
     /**
      * 在数组末尾添加元素
-     * @param e
+     * @param e 要添加的元素
      */
     public void addLast(E e){
         add(size, e);
@@ -56,7 +58,7 @@ public class Array<E> {
 
     /**
      * 在数组开头添加元素
-     * @param e
+     * @param e 要添加的元素
      */
     public void addFirst(E e){
         add(0, e);
@@ -64,11 +66,10 @@ public class Array<E> {
 
     /**
      * 在数组任意位置添加元素
-     * @param index
-     * @param e
+     * @param index 添加的位置
+     * @param e 要添加的元素
      */
     public void add(int index, E e){
-
         if(index < 0 || index > size){
             throw new IllegalArgumentException("add error, array index illegal");
         }
@@ -86,7 +87,8 @@ public class Array<E> {
 
     /**
      * 获取index的元素
-     * @return
+     * @param index 位置
+     * @return 位于index的元素
      */
     public E get(int index){
         if(index < 0 || index >= size){
@@ -95,9 +97,11 @@ public class Array<E> {
         return data[index];
     }
 
+
     /**
      * 设置index元素的值
-     * @return
+     * @param index 位置
+     * @param e 元素
      */
     public void set(int index, E e){
         if(index < 0 || index >= size){
@@ -108,7 +112,8 @@ public class Array<E> {
 
     /**
      * 数组中是否包含元素e
-     * @return
+     * @param e 元素
+     * @return 是否包含
      */
     public boolean contain(E e){
         for(int i = 0; i < size; i++){
@@ -121,7 +126,8 @@ public class Array<E> {
 
     /**
      * 查找元素在数组中的位置
-     * @return
+     * @param e 元素
+     * @return 位置，-1代表不
      */
     public int find(E e){
         for(int i = 0; i < size; i++){
@@ -134,8 +140,8 @@ public class Array<E> {
 
     /**
      * 删除并且返回
-     * @param index
-     * @return
+     * @param index 位置
+     * @return 删除后的
      */
     public E remove(int index){
         if(index < 0 || index >= size){
@@ -170,6 +176,7 @@ public class Array<E> {
         }
 
     }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
